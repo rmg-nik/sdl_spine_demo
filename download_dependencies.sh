@@ -4,9 +4,9 @@ set -e
 
 mkdir -p ./ThirdParty
 
-git.exe clone --progress -v "https://github.com/EsotericSoftware/spine-runtimes.git" "./ThirdParty/spine-runtimes"
-git.exe clone --progress -v "https://github.com/libsdl-org/SDL.git" "./ThirdParty/SDL"
-git.exe clone --progress -v "https://github.com/nothings/stb.git" "./ThirdParty/stb"
+git clone --progress -v "https://github.com/EsotericSoftware/spine-runtimes.git" "./ThirdParty/spine-runtimes"
+git clone --progress -v "https://github.com/libsdl-org/SDL.git" "./ThirdParty/SDL"
+git clone --progress -v "https://github.com/nothings/stb.git" "./ThirdParty/stb"
 
 cp draw_arrays.patch ./ThirdParty/SDL
 
