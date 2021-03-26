@@ -1,0 +1,7 @@
+/out
+/bin
+/build
+*.user
+*.DS_Store
+.vs
+/ThirdParty
