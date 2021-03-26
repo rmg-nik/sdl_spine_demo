@@ -203,7 +203,7 @@ index 7cb41b9d..40c0cd4d 100644
      renderer->RenderReadPixels = D3D_RenderReadPixels;
      renderer->RenderPresent = D3D_RenderPresent;
 diff --git a/src/render/metal/SDL_render_metal.m b/src/render/metal/SDL_render_metal.m
-index 67ac1b66..752e93ac 100644
+index 67ac1b66..5a338661 100644
 --- a/src/render/metal/SDL_render_metal.m
 +++ b/src/render/metal/SDL_render_metal.m
 @@ -208,6 +208,8 @@ IsMetalAvailable(const SDL_SysWMinfo *syswm)
@@ -541,7 +541,7 @@ index 67ac1b66..752e93ac 100644
              }
  
 +            case SDL_RENDERCMD_DRAW_ARRAY: {
-+                const size_t count = cmd->data.draw.count;
++                const size_t count = cmd->data.draw.count * 3;
 +                SetCopyState(renderer, cmd, CONSTANTS_OFFSET_IDENTITY, mtlbufvertex, &statecache);
 +                [data.mtlcmdencoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:count];
 +                break;
