@@ -1,4 +1,4 @@
-#include "sdl_spine.h"
+﻿#include "sdl_spine.h"
 #include "stb/stb_image.h"
 #include "SDL.h"
 #include <algorithm>
@@ -328,7 +328,7 @@ void SpineAnimation::Draw(SDL_Renderer* renderer)
         if (!sdl_vertices.empty() && (nextBlend != blend || texture != nextTexture) && texture)
         {
             SDL_SetTextureBlendMode(texture, blend);
-            SDL_RenderDrawArray(renderer, texture, sdl_vertices.data(), 0, (int)sdl_vertices.size());
+            SDL_RenderGeometry(renderer, texture, sdl_vertices.data(), (int)sdl_vertices.size(), nullptr, 0);
             sdl_vertices.clear();
         }
 
@@ -347,13 +347,11 @@ void SpineAnimation::Draw(SDL_Renderer* renderer)
 
         for (int j = 0; j < indicesCount; ++j)
         {
-            int w, h;
-            SDL_QueryTexture(texture, nullptr, nullptr, &w, &h);
             int index = indices[j] << 1;
-            vertex.pos.x = vertices[index];
-            vertex.pos.y = vertices[index + 1];
-            vertex.tex.x = uvs[index] * w;
-            vertex.tex.y = uvs[index + 1] * h;
+            vertex.position.x = vertices[index];
+            vertex.position.y = vertices[index + 1];
+            vertex.tex_coord.x = uvs[index];
+            vertex.tex_coord.y = uvs[index + 1];
             sdl_vertices.push_back(vertex);
         }
 
@@ -365,7 +363,7 @@ void SpineAnimation::Draw(SDL_Renderer* renderer)
     if (!sdl_vertices.empty())
     {
         SDL_SetTextureBlendMode(texture, blend);
-        SDL_RenderDrawArray(renderer, texture, sdl_vertices.data(), 0, (int)sdl_vertices.size());
+        SDL_RenderGeometry(renderer, texture, sdl_vertices.data(), (int)sdl_vertices.size(), nullptr, 0);
         sdl_vertices.clear();
     }
 }
